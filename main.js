@@ -3,11 +3,13 @@ let nextBtn = document.getElementById("next-Btn");
 let helperText = document.getElementById("helper-Text");
 let bottomBtn = document.getElementById("bottom-Btn");
 
-let gameState = {
+const newVariable = "new variable";
+
+const gameState = {
     screenPage: [
         {
             headerText: "I can read your mind",
-            nextBtn: "",
+            nextBtn: "none",
             helperText: "",
             bottomBtn: "GO"
         },
@@ -30,23 +32,44 @@ let gameState = {
             bottomBtn: "RESET"
         },
         {
-            headerText: `${randSym}`,
+            headerText: "${randSym}",
             nextBtn: "REVEAL",
             helperText: "Find your new number. Note the symbol beside the number",
             bottomBtn: "RESET"
         },
         {
-            headerText: `${answerSym}`,
-            nextBtn: "",
-            helperText: `Your symbol is: ${answerSym}`,
+            headerText: "${answerSym}",
+            nextBtn: "none",
+            helperText: "Your symbol is: ${answerSym}",
             bottomBtn: "RESET"
         }
     ],
     currentPage: 0,
     symArr: ["!", "@", "#", "$", "%", "^", "&", "*", "~", "?"],
-    answerSym: ""
+    // answerSym: ""
 };
 
-initGame = () => {
-
+function initGame() {
+    gameState.currentPage = 0
+    headerText.innerHTML = gameState.screenPage[gameState.currentPage].headerText;
+    nextBtn.style.display = gameState.screenPage[gameState.currentPage].nextBtn;
+    helperText.innerHTML = gameState.screenPage[gameState.currentPage].helperText;
+    bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
+    gameState.currentPage += 1;
 }
+
+addEventListener('DOMContentLoaded', initGame);
+
+function updatePage() {
+    headerText.innerHTML = gameState.screenPage[gameState.currentPage].headerText;
+    nextBtn.innerHTML = gameState.screenPage[gameState.currentPage].nextBtn;
+    helperText.innerHTML = gameState.screenPage[gameState.currentPage].helperText;
+    bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
+    gameState.currentPage += 1;
+}
+
+bottomBtn.addEventListener('click', updatePage);
+
+/*function resetGame() {
+    gameState.currentPage 
+} */
