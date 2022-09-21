@@ -3,7 +3,7 @@ let nextBtn = document.getElementById("next-Btn");
 let helperText = document.getElementById("helper-Text");
 let bottomBtn = document.getElementById("bottom-Btn");
 
-const gameState = {
+let gameState = {
     screenPage: [
         {
             headerText: "I can read your mind",
@@ -46,3 +46,7 @@ const gameState = {
     symArr: ["!", "@", "#", "$", "%", "^", "&", "*", "~", "?"],
     answerSym: ""
 };
+
+initGame = () => {
+
+}
