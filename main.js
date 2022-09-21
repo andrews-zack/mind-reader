@@ -68,8 +68,18 @@ function updatePage() {
     gameState.currentPage += 1;
 }
 
-bottomBtn.addEventListener('click', updatePage);
+/*
+if (bottomBtn.textContent === "GO") {
+    bottomBtn.addEventListener('click', updatePage);
+}   else {
+    bottomBtn.addEventListener('click', initGame);
+}
 
-/*function resetGame() {
-    gameState.currentPage 
-} */
+
+bottomBtn.addEventListener('click', (e) => {
+    if (bottomBtn.textContent === "GO") {
+        updatePage;
+    } else {
+        initGame;
+    }
+ */
