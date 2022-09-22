@@ -1,7 +1,11 @@
+h1 {
+    font-size: 75px;
+    color: darkgray;
+}
 
-
-#headerCon {
-    min-height: 400px;
+.scroll {
+    overflow: scroll;
+    max-height: 50vh;
 }
 
 #nextCon {
@@ -9,9 +13,10 @@
 }
 
 #helperCon {
-    min-height: 120px;
+    min-height: 100px;
 }
 
 #bottomCon {
     min-height: 90px;
 }
+
