@@ -30,28 +30,26 @@ let gameState = {
         {
             headerText: "Subtract your new number from the original number",
             nextBtn: "NEXT",
-            helperText: " Ex: 14 - 5 = 9 click next to proceed",
+            helperText: `Ex: 14 - 5 = 9 click next to proceed`,
             bottomBtn: "RESET",
             nextHide: false,
         },
         {
-            headerText: "${symArr}",
+            headerText: "",
             nextBtn: "REVEAL",
             helperText: "Find your new number. Note the symbol beside the number",
             bottomBtn: "RESET",
             nextHide: false,
         },
         {
-            headerText: "${answerSym}",
+            headerText: "",
             nextBtn: "REVEAL",
-            helperText: "Your symbol is: ${answerSym}",
+            helperText: "Your symbol is: ",
             bottomBtn: "RESET",
             nextHide: true,
         }
     ],
     currentPage: 0,
-    // symArr: ["!", "@", "#", "$", "%", "^", "&", "*", "~"],
-    // answerSym: "${gameState.symArr[0]}"
 };
 
 function scrambleSym(symArr) {
@@ -74,11 +72,22 @@ function initGame() {
     bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
     gameState.symArr = ["!", "@", "#", "$", "%", "^", "&", "*", "~"];
     scrambleSym();
-    gameState.answerSym = `${gameState.symArr[0]}`;
+    gameState.screenPage[5].headerText = gameState.symArr[0];
+    gameState.screenPage[5].helperText += gameState.symArr[0];
+    let bigArr = [];
+    let pageArr = [];
+    for (let i = 1; i <= 11; i++) {
+        bigArr = bigArr.concat(gameState.symArr);
+    };
+    
+    for (let i = 0; i <= 81; i++) {
+        let n = i;
+        pageArr = pageArr.concat(`${n} : ${bigArr[n]}`);
+    };
+    gameState.screenPage[4].headerText = pageArr;
 }
 
 function handleBottomClick() {
-    console.log(gameState.testKey);
     if (gameState.currentPage === 0) {
         updatePage();
     } else {
@@ -101,3 +110,18 @@ function resetGame() {
     gameState.currentPage = 0;
     initGame();
 }
+
+/*
+let bigArr = [];
+let pageArr = [];
+
+for (let i = 1; i <= 11; i++) {
+    bigArr = bigArr.concat(gameState.symArr);
+    console.log(bigArr);
+};
+
+for (let i = 0; i <= 99; i++) {
+    let n = i;
+    pageArr = pageArr.concat(`${n} : ${bigArr[n]}`);
+};
+*/
