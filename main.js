@@ -3,9 +3,10 @@ let nextBtn = document.getElementById("next-Btn");
 let helperText = document.getElementById("helper-Text");
 let bottomBtn = document.getElementById("bottom-Btn");
 
+// let symArr = ["!", "@", "#", "$", "%", "^", "&", "*", "~"];
+// let answerSym = `${gameState.symArr[0]}`;
 
-
-const gameState = {
+let gameState = {
     screenPage: [
         {
             headerText: "I can read your mind",
@@ -36,7 +37,7 @@ const gameState = {
             nextHide: false,
         },
         {
-            headerText: "${randSym}",
+            headerText: "${symArr}",
             nextBtn: "REVEAL",
             helperText: "Find your new number. Note the symbol beside the number",
             bottomBtn: "RESET",
@@ -68,6 +69,7 @@ function scrambleSym(symArr) {
 }
 
 addEventListener('DOMContentLoaded', initGame);
+nextBtn.addEventListener("click", updatePage);
 
 function initGame() {
     // gameState.currentPage = 0
@@ -76,38 +78,32 @@ function initGame() {
     helperText.innerHTML = gameState.screenPage[gameState.currentPage].helperText;
     bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
     // gameState.currentPage += 1;
-    bottomBtn.addEventListener("click", updatePage);
+    bottomBtn.addEventListener("click", () => {
+        updatePage();
+    });
 }
 
 function updatePage() {
-    gameState.currentPage += 1;
+    gameState.currentPage++;
     nextBtn.hidden = gameState.screenPage[gameState.currentPage].nextHide;
     headerText.innerHTML = gameState.screenPage[gameState.currentPage].headerText;
     nextBtn.innerHTML = gameState.screenPage[gameState.currentPage].nextBtn;
     helperText.innerHTML = gameState.screenPage[gameState.currentPage].helperText;
     bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
-    bottomBtn.addEventListener("click", resetGame);
-    nextBtn.addEventListener("click", updatePage);
+    bottomBtn.addEventListener("click", () => {
+        resetGame();
+    });
 }
+
+nextBtn.addEventListener("click", updatePage);
+
+/*
+nextBtn.addEventListener("click", () => {
+    updatePage();
+});
+*/
 
 function resetGame() {
     gameState.currentPage = 0;
     initGame();
 }
-
-
-/*
-if (bottomBtn.textContent === "GO") {
-    bottomBtn.addEventListener('click', updatePage);
-}   else {
-    bottomBtn.addEventListener('click', initGame);
-}
-
-
-bottomBtn.addEventListener('click', (e) => {
-    if (bottomBtn.textContent === "GO") {
-        updatePage;
-    } else {
-        initGame;
-    }
- */
