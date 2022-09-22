@@ -3,8 +3,6 @@ let nextBtn = document.getElementById("next-Btn");
 let helperText = document.getElementById("helper-Text");
 let bottomBtn = document.getElementById("bottom-Btn");
 
-// let symArr = ["!", "@", "#", "$", "%", "^", "&", "*", "~"];
-// let answerSym = `${gameState.symArr[0]}`;
 
 let gameState = {
     screenPage: [
@@ -52,11 +50,9 @@ let gameState = {
         }
     ],
     currentPage: 0,
-    symArr: ["!", "@", "#", "$", "%", "^", "&", "*", "~"],
-    answerSym: "${gameState.symArr[0]}"
+    // symArr: ["!", "@", "#", "$", "%", "^", "&", "*", "~"],
+    // answerSym: "${gameState.symArr[0]}"
 };
-
-
 
 function scrambleSym(symArr) {
     let arrLength = gameState.symArr.length;
@@ -72,16 +68,25 @@ addEventListener('DOMContentLoaded', initGame);
 nextBtn.addEventListener("click", updatePage);
 
 function initGame() {
-    // gameState.currentPage = 0
     headerText.innerHTML = gameState.screenPage[gameState.currentPage].headerText;
     nextBtn.hidden = gameState.screenPage[gameState.currentPage].nextHide;
     helperText.innerHTML = gameState.screenPage[gameState.currentPage].helperText;
     bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
-    // gameState.currentPage += 1;
-    bottomBtn.addEventListener("click", () => {
-        updatePage();
-    });
+    gameState.symArr = ["!", "@", "#", "$", "%", "^", "&", "*", "~"];
+    scrambleSym();
+    gameState.answerSym = `${gameState.symArr[0]}`;
 }
+
+function handleBottomClick() {
+    console.log(gameState.testKey);
+    if (gameState.currentPage === 0) {
+        updatePage();
+    } else {
+        resetGame();
+    }
+}
+
+bottomBtn.addEventListener("click", handleBottomClick);
 
 function updatePage() {
     gameState.currentPage++;
@@ -90,18 +95,7 @@ function updatePage() {
     nextBtn.innerHTML = gameState.screenPage[gameState.currentPage].nextBtn;
     helperText.innerHTML = gameState.screenPage[gameState.currentPage].helperText;
     bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
-    bottomBtn.addEventListener("click", () => {
-        resetGame();
-    });
 }
-
-nextBtn.addEventListener("click", updatePage);
-
-/*
-nextBtn.addEventListener("click", () => {
-    updatePage();
-});
-*/
 
 function resetGame() {
     gameState.currentPage = 0;
