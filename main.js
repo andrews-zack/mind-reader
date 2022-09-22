@@ -52,6 +52,7 @@ let gameState = {
     currentPage: 0,
 };
 
+// Fisher Yates method
 function scrambleSym(symArr) {
     let arrLength = gameState.symArr.length;
     while (arrLength != 0) {
@@ -110,18 +111,3 @@ function resetGame() {
     gameState.currentPage = 0;
     initGame();
 }
-
-/*
-let bigArr = [];
-let pageArr = [];
-
-for (let i = 1; i <= 11; i++) {
-    bigArr = bigArr.concat(gameState.symArr);
-    console.log(bigArr);
-};
-
-for (let i = 0; i <= 99; i++) {
-    let n = i;
-    pageArr = pageArr.concat(`${n} : ${bigArr[n]}`);
-};
-*/
