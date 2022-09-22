@@ -67,6 +67,7 @@ addEventListener('DOMContentLoaded', initGame);
 nextBtn.addEventListener("click", updatePage);
 
 function initGame() {
+    gameState.screenPage[5].helperText = "Your symbol is: "
     headerText.innerHTML = gameState.screenPage[gameState.currentPage].headerText;
     nextBtn.hidden = gameState.screenPage[gameState.currentPage].nextHide;
     helperText.innerHTML = gameState.screenPage[gameState.currentPage].helperText;
