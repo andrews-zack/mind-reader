@@ -1,5 +1,5 @@
 h1 {
-    font-size: 75px;
+    font-size: 65px;
     color: darkgray;
 }
 
@@ -9,7 +9,7 @@ h1 {
 }
 
 #nextCon {
-    min-height: 120px;
+    height: 120px;
 }
 
 #helperCon {
@@ -20,3 +20,6 @@ h1 {
     min-height: 90px;
 }
 
+body {
+    height: 100%;
+}
