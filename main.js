@@ -1,10 +1,14 @@
+// Declaring objects attached to the various divs in html
 let headerText = document.getElementById("header-Text");
 let nextBtn = document.getElementById("next-Btn");
 let helperText = document.getElementById("helper-Text");
 let bottomBtn = document.getElementById("bottom-Btn");
 
-
+// Declaring state object
 let gameState = {
+    // currentPage will be the object that determines what content is loaded/hidden/visible
+    currentPage: 0,
+    // screenPage object is an array containing all the values for the html elements on each page that loads
     screenPage: [
         {
             headerText: "I can read your mind",
@@ -49,10 +53,9 @@ let gameState = {
             nextHide: true,
         }
     ],
-    currentPage: 0,
 };
 
-// Fisher Yates method
+// Fisher Yates method to shuffle symbols in the array
 function scrambleSym(symArr) {
     let arrLength = gameState.symArr.length;
     while (arrLength != 0) {
@@ -63,9 +66,12 @@ function scrambleSym(symArr) {
     return symArr;
 }
 
+// The event listeners for content to load, and functions to run on button click
 addEventListener('DOMContentLoaded', initGame);
 nextBtn.addEventListener("click", updatePage);
+bottomBtn.addEventListener("click", handleBottomClick);
 
+// initGame loads page 1, creates my array of symbols and runs the scramble function, generates and sets values for number/symbol pairs
 function initGame() {
     gameState.screenPage[5].helperText = "Your symbol is:  "
     headerText.innerHTML = gameState.screenPage[gameState.currentPage].headerText;
@@ -89,6 +95,7 @@ function initGame() {
     gameState.screenPage[4].headerText = pageArr;
 }
 
+// We only want the bottom button to reset the game after the first page. If it's on the first page, the bottom button will advance the site to the next page
 function handleBottomClick() {
     if (gameState.currentPage === 0) {
         updatePage();
@@ -97,8 +104,7 @@ function handleBottomClick() {
     }
 }
 
-bottomBtn.addEventListener("click", handleBottomClick);
-
+// Increments the currentPage object and populates the page with the correct content
 function updatePage() {
     gameState.currentPage++;
     nextBtn.hidden = gameState.screenPage[gameState.currentPage].nextHide;
@@ -108,6 +114,7 @@ function updatePage() {
     bottomBtn.innerHTML = gameState.screenPage[gameState.currentPage].bottomBtn;
 }
 
+// Resets the page number and runs initGame to load the first page again
 function resetGame() {
     gameState.currentPage = 0;
     initGame();
